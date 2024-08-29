@@ -39,16 +39,47 @@ sensor = SICK_SENSOR()
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         decoded_payload = msg.payload.decode()
-        value = sensor.get_mpb10_value(decoded_payload)
+        valuempb10 = sensor.get_mpb10_value(decoded_payload)
+        print(valuempb10)
         data ={
-            "mpb10": "Gyro",
-            "value": value
+            "Gyro": "MPB10",
+            "value": valuempb10
         }
         socketio.emit('mqtt_message',  data)
+        jsonod2000 = '{"iolink":{"valid":true,"time":1723049390,"value":[252,35,116,55,247,3]},"iqValue":false}'
+        valueod2000 = sensor.get_od2000_value(jsonod2000)
+        data1 ={
+            "Distance": "OD2000",
+            "value": valueod2000
+        }
+        socketio.emit('mqtt_message',  data1)
+        jsonwtm10l = '{"iolink":{"valid":true,"time":1723049390,"value":[0,183,0,122]},"iqValue":false}'
+        valuewtm10l = sensor.get_wtm10l_value(jsonwtm10l)
+        data2 ={
+            "Distance": "WTM10L",
+            "value": valuewtm10l
+        }
+        socketio.emit('mqtt_message',  data2)
+        jsoncss = '{"iolink":{"valid":true,"time":1723049390,"value":[0,0,0,0,0,0,1,201,0,0,0,0]},"iqValue":false}'
+        valuecss = sensor.get_css_value(jsoncss)
+        data3 ={
+            "Color": "CSS",
+            "value": valuecss
+        }
+        socketio.emit('mqtt_message',  data3)
 
+        jsonpbs = '{"iolink":{"valid":true,"time":1723049390,"value":[63,128,193,252,0]},"iqValue":false}'
+        valuepbs = sensor.get_pbs_value(jsonpbs)
+        data4 ={
+            "Pressure": "PBS",
+            "value": valuepbs
+        }
+        socketio.emit('mqtt_message',  data4)
     for topic in MQTT_TOPICS_SUBSCRIBE:
         client.subscribe(topic)
     client.on_message = on_message
+def OD2000():
+    valueod2000 = sensor.get_od2000_value()
     
 def run_mqtt():
     client = connect_mqtt()

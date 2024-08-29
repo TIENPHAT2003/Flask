@@ -3,116 +3,10 @@
 {% block content %}
   <body>
     <!-- Tab Card -->
-    <div class="modal fade" id="addcard" tabindex="-1" aria-labelledby="settingModalSPLabel" aria-hidden="true" style="display: none;">
-      <div class="modal-dialog">
-        <div class="modal-content" style="width: fit-content;">
-          <div class="modal-header">
-            <h5 class="modal-title" id="settingModalLabel" style="font-size: 1.5rem; font-weight: bold;">Thêm thẻ mới</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div style="padding: 10px;" class="state">
-            <div>
-              Name:<input type="text" class="state" id="input_namecard" size="15" placeholder="Name Card" />
-            </div><br />
-            <div class="row gx-2">
-              <div class="col-8">Select Card:</div>
-              <div class="col">
-                <div>
-                  <select id="selectcard" class="state">
-                    <option value="">--Select Card--</option>
-                    <option value="1">OD2000</option>
-                    <option value="2">WTM10L</option>
-                    <option value="3">MPB10</option>
-                  </select>
-                </div>
-              </div>
-            </div><br />
-            <div class="row gx-2">
-              <div class="col-8">Select NodeID:</div>
-              <div class="col">
-                <div>
-                  <select id="selectreg" class="state"></select>
-                </div>
-              </div>
-            </div><br />
-            <!-- OD2000 -->
-            <div id="od2000" style="display:block;">
-              <div class="row gx-2">
-                <div class="col">Distance:</div>
-                <div class="col">
-                  <span id="value1" class="state">Value</span>
-                </div>
-                <div class="col">
-                  <div>
-                    <select id="selectvalue1" class="state"></select>
-                  </div>
-                </div>
-              </div><br />
-            </div>
-            <!-- WTM Distance -->
-            <div id="wtmdistance" style="display:none;">
-              <div class="row gx-2">
-                <div class="col">Distance:</div>
-                <div class="col">
-                  <span id="value1" class="state">Value</span>
-                </div>
-                <div class="col">
-                  <div>
-                    <select id="selectvalue1" class="state"></select>
-                  </div>
-                </div>
-              </div><br />
-            </div>
-            <!-- WTM XYZ -->
-            <div id="wtmxyz" style="display:none;">
-              <div class="row gx-2">
-                <div class="col">X:</div>
-                <div class="col">
-                  <span id="value1" class="state">Value</span>
-                </div>
-                <div class="col">
-                  <div>
-                    <select id="selectvalue1" class="state"></select>
-                  </div>
-                </div>
-              </div><br />
-
-              <div class="row gx-2">
-                <div class="col">Y:</div>
-                <div class="col">
-                  <span id="value2" class="state">Value</span>
-                </div>
-                <div class="col">
-                  <select id="selectvalue2" class="state"></select>
-                </div>
-              </div><br />
-
-              <div class="row gx-2">
-                <div class="col">Z:</div>
-                <div class="col">
-                  <span id="value3" class="state">Value</span>
-                </div>
-                <div class="col">
-                  <select id="selectvalue3" class="state"></select>
-                </div>
-              </div><br />
-
-              <div class="row gx-2">
-                <div class="col">Temperature:</div>
-                <div class="col">
-                  <span id="value4" class="state">Value</span>
-                </div>
-                <div class="col">
-                  <select id="selectvalue4" class="state"></select>
-                </div>
-              </div><br />
-            </div>
-            <Center>
-              <span><button id="buttonsavecard" class="button">SAVE</button></span>
-            </Center>
-          </div>
-        </div>
-      </div>
+    <div id="cardhome" class="contentcuataosss" style="display: block;">
+      <Center>
+        <div id="addcard"></div>
+      </Center>
     </div>
     <!-- settingModalSetting -->
     <div class="modal fade" id="settingModalSetting" tabindex="-1" aria-labelledby="settingModalSettingSPLabel" aria-hidden="true">
@@ -577,8 +471,26 @@
         socket.on('connect', function() {
             console.log('Connected to server');
         });
-        socket.on('mqtt_message', function(value) {
-          console.log('Received data from MQTT:', value);
+        socket.on('mqtt_message', function(data) {
+          console.log('Received data from MQTT:', data);
+          var key = Object.keys(data)[0];
+          var nameSensor = data[key];
+          console.log("NameSensor:" + nameSensor)
+          if(nameSensor == "MPB10"){
+            gencard_MPB10(data);
+          }
+          else if(nameSensor == "OD2000"){
+            gencard_OD2000(data);
+          }
+          else if(nameSensor == "PBS"){
+            gencard_PBS(data);
+          }
+          else if(nameSensor == "WTM10L"){
+            gencard_WTM10L(data);
+          }
+          else if(nameSensor == "CSS"){
+            gencard_CSS(data);
+          }
         });
             
     });
