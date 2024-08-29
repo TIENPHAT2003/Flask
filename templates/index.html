@@ -1,0 +1,585 @@
+{% extends 'base.html ' %}
+
+{% block content %}
+  <body>
+    <!-- Tab Card -->
+    <div class="modal fade" id="cardaddApp" tabindex="-1" aria-labelledby="settingModalSPLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content" style="width: fit-content;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingModalLabel" style="font-size: 1.5rem; font-weight: bold;">Thêm thẻ mới</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div style="padding: 10px;" class="state">
+            <div>
+              Name:<input type="text" class="state" id="input_namecard" size="15" placeholder="Name Card" />
+            </div><br />
+            <div class="row gx-2">
+              <div class="col-8">Select Card:</div>
+              <div class="col">
+                <div>
+                  <select id="selectcard" class="state">
+                    <option value="">--Select Card--</option>
+                    <option value="1">OD2000</option>
+                    <option value="2">WTM10L</option>
+                    <option value="3">MPB10</option>
+                  </select>
+                </div>
+              </div>
+            </div><br />
+            <div class="row gx-2">
+              <div class="col-8">Select NodeID:</div>
+              <div class="col">
+                <div>
+                  <select id="selectreg" class="state"></select>
+                </div>
+              </div>
+            </div><br />
+            <!-- OD2000 -->
+            <div id="od2000" style="display:block;">
+              <div class="row gx-2">
+                <div class="col">Distance:</div>
+                <div class="col">
+                  <span id="value1" class="state">Value</span>
+                </div>
+                <div class="col">
+                  <div>
+                    <select id="selectvalue1" class="state"></select>
+                  </div>
+                </div>
+              </div><br />
+            </div>
+            <!-- WTM Distance -->
+            <div id="wtmdistance" style="display:none;">
+              <div class="row gx-2">
+                <div class="col">Distance:</div>
+                <div class="col">
+                  <span id="value1" class="state">Value</span>
+                </div>
+                <div class="col">
+                  <div>
+                    <select id="selectvalue1" class="state"></select>
+                  </div>
+                </div>
+              </div><br />
+            </div>
+            <!-- WTM XYZ -->
+            <div id="wtmxyz" style="display:none;">
+              <div class="row gx-2">
+                <div class="col">X:</div>
+                <div class="col">
+                  <span id="value1" class="state">Value</span>
+                </div>
+                <div class="col">
+                  <div>
+                    <select id="selectvalue1" class="state"></select>
+                  </div>
+                </div>
+              </div><br />
+
+              <div class="row gx-2">
+                <div class="col">Y:</div>
+                <div class="col">
+                  <span id="value2" class="state">Value</span>
+                </div>
+                <div class="col">
+                  <select id="selectvalue2" class="state"></select>
+                </div>
+              </div><br />
+
+              <div class="row gx-2">
+                <div class="col">Z:</div>
+                <div class="col">
+                  <span id="value3" class="state">Value</span>
+                </div>
+                <div class="col">
+                  <select id="selectvalue3" class="state"></select>
+                </div>
+              </div><br />
+
+              <div class="row gx-2">
+                <div class="col">Temperature:</div>
+                <div class="col">
+                  <span id="value4" class="state">Value</span>
+                </div>
+                <div class="col">
+                  <select id="selectvalue4" class="state"></select>
+                </div>
+              </div><br />
+            </div>
+            <Center>
+              <span><button id="buttonsavecard" class="button">SAVE</button></span>
+            </Center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- settingModalSetting -->
+    <div class="modal fade" id="settingModalSetting" tabindex="-1" aria-labelledby="settingModalSettingSPLabel" aria-hidden="true">
+      <div class="modal-dialog" style="width: 100%;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingModalLabel" style="font-size: 1.5rem; font-weight: bold;">SETTING</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div>
+            <div id="SettingsPage">
+              <div class="navbar navbar-expand-sm" style="background-color: #343a40;">
+                <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;wifi&#39;)">
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#icon-wifi"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;ethernet&#39;)">
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#icon-ethernet"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;mqtt&#39;)">
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#icon-mqtt"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;rfnet&#39;)">
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#icon-rfnet"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;io&#39;)">
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#icon-io"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;gyro&#39;)">
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#icon-gyro"></use>
+                  </svg>
+                </button>
+              </div>
+              <form>
+                <div id="wifi" class="tabcontent" style="display: block;">
+                  <div id="WifiList"></div>
+                  <div class="container py-3">
+                    <header>
+                      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                        <span class="fs-4">WIFI CONFIG</span>
+                      </div>
+                    </header>
+                    <div>
+                      SSID:<input type="text" id="input_ssid" size="20" placeholder="WiFi Name" />
+                    </div><br />
+                    <div>
+                      PASS:<input type="text" id="input_pass" size="20" placeholder="WiFi Pass" />
+                    </div><br />
+                    <div>
+                      STATIC IP:<select id="staticip" value="0">
+                        <option value="0" selected="">Disable</option>
+                        <option value="1">Enable</option>
+                      </select>
+                    </div><br />
+                    <div id="wifimode" style="display:none;"></div>
+                  </div>
+                </div>
+                <div id="ethernet" class="tabcontent" style="display: none">
+                  <div class="container py-3">
+                    <header>
+                      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                        <span class="fs-4">ETHERNET CONFIG</span>
+                      </div>
+                    </header>
+                    <div>
+                      ADDRESS:<input type="text" id="address" size="20" placeholder="192.168.2.101" />
+                    </div><br />
+                    <div>
+                      GETWAY:<input type="text" id="getway" size="20" placeholder="192.168.2.1" />
+                    </div><br />
+                    <div>
+                      SUBNET:<input type="text" id="subnet" size="20" placeholder="255.255.255.0" />
+                    </div><br />
+                    <div>
+                      P_DNS:<input type="text" id="p_dns" size="20" placeholder="8.8.8.8" />
+                    </div><br />
+                    <div>
+                      S_DNS:<input type="text" id="s_dns" size="20" placeholder="8.8.4.4" />
+                    </div><br />
+                    <div>
+                      P_PORT:<input type="number" id="p_port" size="4" placeholder="502" />
+                    </div>
+                  </div>
+                </div>
+                <div id="mqtt" class="tabcontent" style="display: none">
+                  <div class="container py-3">
+                    <header>
+                      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                        <span class="fs-4">MQTT CONFIG</span>
+                      </div>
+                    </header>
+                    <div>
+                      MQTT_HOST:<input type="text" id="MQTT_Host" size="20" value="" />
+                    </div><br />
+                    <div>
+                      MQTT_PORT:<input type="number" id="MQTT_Port" size="20" value="" />
+                    </div><br />
+                    <div>
+                      MQTT_USER:<input type="text" id="MQTT_user" size="20" value="" />
+                    </div><br />
+                    <div>
+                      MQTT_PASS:<input type="text" id="MQTT_pass" size="20" value="" />
+                    </div>
+                  </div>
+                </div>
+                <div id="rfnet" class="tabcontent" style="display: none">
+                  <div class="container py-3">
+                    <header>
+                      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                        <span class="fs-4">RFNET CONFIG</span>
+                      </div>
+                    </header>
+                    <div>
+                      <p>RFMODE</p>
+                      <select name="rfmode" value="0">
+                        <option value="0" selected="">Mesh</option>
+                        <option value="1">WifiRF</option>
+                        <option value="2">LoRa</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>NetWorkName</p>
+                      <input type="text" name="networkname" id="networkname" size="20" value="iSoftMesh" />
+                    </div>
+                    <div>
+                      <p>MeshPass</p>
+                      <input type="text" name="meshpass" id="meshpass" size="20" value="i-Soft@2709" />
+                    </div>
+                    <div>
+                      <p>MeshPort</p>
+                      <input type="number" name="meshport" id="meshport" size="4" value="3" />
+                    </div>
+                    <div>
+                      <p>MeshID</p>
+                      <input type="number" name="meshid" id="meshid" size="4" value="7" />
+                    </div>
+                    <div>
+                      <p>MeshRole</p>
+                      <select name="meshrole" value="Bridge">
+                        <option value="Bridge" selected="">Bridge</option>
+                        <option value="Node">Node</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div id="io" class="tabcontent" style="display: none">
+                  <div class="container py-3">
+                    <header>
+                      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                        <span class="fs-4">io config</span>
+                      </div>
+                    </header>
+                    <div>
+                      <p>Delay1</p>
+                      <input type="number" name="Delay1" id="Delay1" size="4" value="3000" />
+                    </div>
+                    <div>
+                      <p>Hold1</p>
+                      <select name="Hold1" value="1">
+                        <option value="1" selected="">Enable</option>
+                        <option value="0">Disable</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>Delay2</p>
+                      <input type="number" name="Delay2" id="Delay2" size="4" value="100" />
+                    </div>
+                    <div>
+                      <p>Hold2</p>
+                      <select name="Hold2" value="1">
+                        <option value="1" selected="">Enable</option>
+                        <option value="0">Disable</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>Delay3</p>
+                      <input type="number" name="Delay3" id="Delay3" size="4" value="100" />
+                    </div>
+                    <div>
+                      <p>Hold3</p>
+                      <select name="Hold3" value="1">
+                        <option value="1" selected="">Enable</option>
+                        <option value="0">Disable</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>Delay4</p>
+                      <input type="number" name="Delay4" id="Delay4" size="4" value="3000" />
+                    </div>
+                    <div>
+                      <p>Hold4</p>
+                      <select name="Hold4" value="1">
+                        <option value="1" selected="">Enable</option>
+                        <option value="0">Disable</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>Interval</p>
+                      <input type="number" name="Interval" id="Interval" size="4" value="5000" />
+                    </div>
+                    <div>
+                      <p>key</p>
+                      <input type="text" name="key" id="key" size="30" value="V6QISIN5BBI0XASF" />
+                    </div>
+                    <div>
+                      <p>chanelID</p>
+                      <input type="number" name="chanelID" id="chanelID" size="4" value="1042547" />
+                    </div>
+                  </div>
+                </div>
+                <div id="gyro" class="tabcontent" style="display: none">
+                  <div class="container py-3">
+                    <header>
+                      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                        <span class="fs-4">gyro config</span>
+                      </div>
+                    </header>
+                    <div>
+                      <p>gyro enable</p>
+                      <select name="gyro enable" value="0">
+                        <option value="0" selected="">Disable</option>
+                        <option value="1">Enable</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>GyroLowPassFilter</p>
+                      <select name="GyroLowPassFilter" value="5">
+                        <option value="0">DLPF_0</option>
+                        <option value="1">DLPF_1</option>
+                        <option value="2">DLPF_2</option>
+                        <option value="3">DLPF_3</option>
+                        <option value="4">DLPF_4</option>
+                        <option value="5" selected="">DLPF_5</option>
+                        <option value="6">DLPF_6</option>
+                        <option value="7">DLPF_7</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>RateDivider</p>
+                      <input type="text" name="RateDivider" id="RateDivider" size="20" value="0" />
+                    </div>
+                    <div>
+                      <p>GyroRange</p>
+                      <select name="GyroRange" value="0">
+                        <option value="0" selected="">GYRO_RANGE_250</option>
+                        <option value="1">GYRO_RANGE_500</option>
+                        <option value="2">GYRO_RANGE_1000</option>
+                        <option value="3">GYRO_RANGE_2000</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>AccLowPassFilter</p>
+                      <select name="AccLowPassFilter" value="0">
+                        <option value="0" selected="">DLPF_0</option>
+                        <option value="1">DLPF_1</option>
+                        <option value="2">DLPF_2</option>
+                        <option value="3">DLPF_3</option>
+                        <option value="4">DLPF_4</option>
+                        <option value="5">DLPF_5</option>
+                        <option value="6">DLPF_6</option>
+                        <option value="7">DLPF_7</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p>ACCRange</p>
+                      <select name="ACCRange" value="0">
+                        <option value="0" selected="">ACC_RANGE_2G</option>
+                        <option value="1">ACC_RANGE_4G</option>
+                        <option value="2">ACC_RANGE_8G</option>
+                        <option value="3">ACC_RANGE_16G</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><br />
+                <div>
+                  <span>
+                    <Center>
+                      <button id="buttonsave" class="button">SAVE</button>
+                    </Center>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- settingcard -->
+    <div class="modal" id="settingsModal.html" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><div class="modal-title"></div></h3>
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" onclick="CloseModalCardSet('cancel')" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <span class="modal-text" id="cardID"></span>
+            <!-- Form inside the modal with input fields for each value -->
+            <form>
+              <div class="row" id="name_product" style="display: none;">
+                <div style="margin-top: 10px;">
+                  <label for="doiten" class="form-label">Change name</label>
+                  <div style="display: flex; align-items: center;">
+                    <input type="text" class="form-control" id="doiten" maxlength="20" />
+                    <button type="button" class="buttonA" style="margin-left: 10px;" onclick="changeName()">Change</button>
+                  </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                  <label for="doiten" class="form-label">Add Product</label>
+                  <div class="row">
+                    <div class="col-sm-10" id="option_product" style="display: block;">
+                      <div class="d-flex">
+                        <input id="newProductName" type="text" class="form-control" maxlength="20" placeholder="New name" style="margin-right: 10px;" />
+                        <button onclick="addProduct()" type="button" class="buttonA" style="margin-right: 10px;">Add</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-1">
+                      <button id="btntoggleDeleteProductList" onclick="toggleDeleteProductList()" type="button" class="buttonA">Show</button>
+                    </div>
+                  </div>
+                  <div id="deleteProductList" style="display: none; margin-top: 20px;">
+                    <table id="productTable" class="custom-table">
+                      <thead>
+                        <tr>
+                          <th style="width: 50%;">List of products</th>
+                          <th>Click to edit</th>
+                          <th>Click to delete</th>
+                        </tr>
+                      </thead>
+                      <tbody id="productTableBody"></tbody>
+                    </table>
+
+                    <div id="editForm" data-index="0" style="display: none;">
+                      <input type="text" id="editProductName" maxlength="20" placeholder="Product Name" style="width: 34%; padding: 0.3rem 0.75rem; border-radius: 0.25rem; border: 1px solid #ced4da;" />
+                      <input type="text" id="editProductSet" placeholder="Plan/Result set" style="width: 20%; padding: 0.3rem 0.75rem; border-radius: 0.25rem; border: 1px solid #ced4da;" />
+                      <input type="text" id="editCycleTime" placeholder="Cycle Time" style="width: 20%; padding: 0.3rem 0.75rem; border-radius: 0.25rem; border: 1px solid #ced4da;" />
+                      <button type="button" onclick="saveProduct()" type="button" class="btn btn-warning">Save</button>
+                      <button type="button" onclick="closeEditForm()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="blockInput" style="display: block; padding-top: 20px;">
+                <div class="row">
+                  <div class="col -3">
+                    <label for="planInput" class="form-label">Plan</label>
+                    <input type="text" class="form-control" id="planInput" />
+                  </div>
+                  <div class="col -3">
+                    <label for="resultInput" class="form-label">Result</label>
+                    <input type="text" class="form-control" id="resultInput" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col -3">
+                    <label for="planSetInput" class="form-label">Plan/Result set</label>
+                    <input type="text" class="form-control" id="planSetInput" />
+                  </div>
+                  <div class="col -3">
+                    <!--   <label for="resultSetInput" class="form-label">Result set</label>
+            <input type="text" class="form-control" id="resultSetInput">   -->
+                    <label class="form-label">Product</label>
+                    <div class="col">
+                      <select id="ProductDataSaveSelect" onchange="displaySelectedProduct()" style="width: 100%; text-align: center; padding: 0.3rem 0.75rem; border-radius: 0.25rem; border: 1px solid #ced4da;"></select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col -3">
+                    <label for="TimeIncInput" class="form-label">Cycle Time</label>
+                    <input type="text" class="form-control" id="TimeIncInput" />
+                  </div>
+                  <div class="col -3">
+                    <label for="PCSInput" class="form-label">Total Plan</label>
+                    <input type="text" class="form-control" id="PCSInput" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <button type="button" class="btn btn-secondary" onclick="CloseModalCardSet('cancel')">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Change -->
+    <div class="modal fade" id="passwordModalChange" tabindex="-1" aria-labelledby="passwordModalChangeLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <form>
+              <h3 class="modal-title" id="passwordModalChangeLabel">Password</h3>
+            </form>
+
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5>Please enter a new password</h5>
+            <div class="col" style="padding: 0 0 10px;">
+              <input type="password" id="pass_Save" class="form-control" placeholder="Please enter a new password" />
+            </div>
+            <div class="col" style="padding: 0 0 10px;">
+              <input type="password" id="pass_Save_confirm" class="form-control" placeholder="Confirm your new password" />
+            </div>
+            <div class="col" style="text-align: center;">
+              <button type="button" class="buttoncuatao_output" id="tennutluu" onclick="validateAndSave()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Thông báo Mật khẩu Sai -->
+    <div class="modal fade" id="wrongPasswordModal" tabindex="-1" aria-labelledby="wrongPasswordModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <p>Incorrect password. Please try again!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Thông báo Mật khẩu Đúng -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <p id="successModaltext">Login Successful!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Thông báo Mật khẩu Đúng -->
+    <div class="modal fade" id="successModalChange" tabindex="-1" aria-labelledby="successModalChangeLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <p>Password changed successfully!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var socket = io.connect('http://' + document.domain + ':' + location.port)
+      
+      $(document).ready(function () {
+        var socket = io.connect()
+      
+        socket.on('mqtt_connect', function (msg) {
+          console.log('msg.data')
+        })
+      })
+    </script>
+  </body>
+{% endblock %}

@@ -1,0 +1,338 @@
+h1 {
+    font-size: 3rem;
+    color: red;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #143642;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #143642;
+}
+
+body {
+    margin: 0;
+}
+
+.content {
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #f7f8f9;
+    ;
+    box-shadow: 2px 2px 12px 1px rgba(140, 140, 140, .5);
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.button {
+    padding: 10px 30px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    color: #fff;
+    background-color: #0f8b8d;
+    border: none;
+    border-radius: 5px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.button:active {
+    background-color: #0f8b8d;
+    box-shadow: 2 2px #CDCDCD;
+    transform: translateY(2px);
+}
+
+.state {
+    font-size: 1.2rem;
+    color: #8c8c8c;
+    font-weight: bold;
+}
+
+.statecard {
+    font-size: 1.5rem;
+    color: #8c8c8c;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 160px;
+    margin-bottom: -100px
+}
+
+.cardA {
+    text-align: center;
+    border-radius: 15px;
+    width: fit-content;
+    height: fit-content;
+    margin: 70px 0 0 0;
+    color: #ffff;
+    overflow: hidden;
+
+    position: relative;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cardTable {
+    position: relative;
+    /* bottom: 150px; */
+    border-radius: 25px;
+    width: 40rem;
+    /* height: 19rem; */
+    margin: 200px 0px 0px 0px;
+    padding: 20px;
+    color: #ffff;
+    overflow: hidden;
+    background-image: linear-gradient(130deg, #535c5e, #2e3138);
+    box-shadow: 2px 2px 12px 1px rgba(15, 15, 15, 255);
+    height: fit-content;
+}
+
+.card-body01 {
+    width: 155px;
+    margin: 10px auto;
+    font-size: 1.5rem;
+}
+
+.card-body02 {
+    width: 180px;
+    margin: 10px auto;
+    font-size: 1.5rem;
+}
+
+.bntcard {
+    padding: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    /* left: 20px; */
+    position: relative;
+    width: 100px;
+    height: 55px;
+    border-radius: 10px;
+    background-image: linear-gradient(130deg, #ffffff, #2e3138);
+    box-shadow: 2px 2px 12px 1px rgba(15, 15, 15, 255);
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-backdrop:nth-child(2n-1),
+.modal-backdrop:nth-child(2n-2) {
+    display: none;
+}
+
+.buttonA {
+    background-color: var(--bs-yellow);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    width: fit-content;
+}
+
+.IOstate {
+    font-size: 1.5rem;
+    color: #8c8c8c;
+    font-weight: bold;
+}
+
+.icon path {
+    fill: white;
+    /* Thay đổi màu ở đây */
+}
+
+.cardcuatao {
+    background-color: #F8F7F9;
+    ;
+    box-shadow: 2px 2px 12px 1px rgba(140, 140, 140, .5);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.contentcuatao {
+    padding: 30px;
+    max-width: 600px;
+    margin-left: 0 auto;
+    margin: auto;
+}
+
+.contentcard {
+    padding: 30px;
+    max-width: 600px;
+    margin-left: 0 auto;
+}
+
+.statecuatao {
+    font-size: 1.2rem;
+    color: #8c8c8c;
+    font-weight: bold;
+}
+
+.cardcuatao_input,
+.cardcuatao_output {
+    background-color: #F8F7F9;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* box-shadow: 2px 2px 12px 1px rgba(140, 140, 140, .5); */
+}
+
+.cardproduct {
+    background-color: #e9f0f0;
+    padding: 5px;
+    max-width: 380px;
+    max-height: 650px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.buttoncuatao_output {
+    padding: 1px 5px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    color: #fff;
+    background-color: #0f8b8d;
+    border: none;
+    border-radius: 5px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.buttoncuatao_output:active {
+    background-color: #0f8b8d;
+    box-shadow: 2 2px #CDCDCD;
+    transform: translateY(2px);
+}
+
+.card-body {
+    padding: 1rem 0rem !important;
+}
+
+.form-check-input:checked {
+    background-color: #33c5ff;
+    border-color: #33c5ff;
+}
+
+.btn-primary,
+.sensor_header {
+    background-color: #33C5FF !important;
+    border-color: #33C5FF !important;
+    color: #fff !important;
+}
+
+.text-left {
+    text-align: left
+}
+
+.text-right {
+    text-align: right
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.alert-secondary {
+    color: #383d41;
+    background-color: #e2e3e5;
+    border-color: #d6d8db;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

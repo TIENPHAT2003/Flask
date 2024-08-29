@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-sm " style="background-color: #143642;">
+  <div class="container-fluid">
+    <ul class="nav nav-tabs">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ url_for('dashboard') }}" role="button" aria-expanded="false"
+          style=" color: black; "><svg class="bi" width="30" height="30">
+            <use xlink:href="#icon-menu"></use>
+          </svg></a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{ url_for('dashboard') }}"
+              style="font-size: 1.2rem; font-weight: bold;color: black; ">Home</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('mqtt_config') }}"
+              style="font-size: 1.2rem; font-weight: bold;color: black; ">Config</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav me-auto nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <br><a class="navbar-brand" href="{{ url_for('dashboard') }}"
+          style="font-size: 2.0rem; font-weight: bold; text-align: center; color: yellow; display:block;">HOME</a>
+      </li>
+      <li class="nav-item">
+        <br><a class="navbar-brand" href="{{ url_for('mqtt_config') }}"
+          style="font-size: 2.0rem; font-weight: bold; text-align: center; color: yellow;  display: block;">Config</a>
+      </li>
+    </ul>
+  </div>
+</nav>
