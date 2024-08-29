@@ -249,8 +249,8 @@ body {
 .cardproduct {
     background-color: #e9f0f0;
     padding: 5px;
-    max-width: 380px;
-    max-height: 650px;
+    width: 400px;
+    height: 300px;
     border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -326,7 +326,12 @@ body {
     height: 120px;
     animation: spin 2s linear infinite;
 }
-
+#addcard {
+    display: flex;
+    flex-wrap: wrap; /* Giúp các thẻ tự động chuyển sang hàng mới khi không đủ chỗ */
+    justify-content: center; /* Căn giữa các thẻ trên hàng ngang */
+    gap: 15px; /* Khoảng cách giữa các thẻ */
+}
 @keyframes spin {
     0% {
         transform: rotate(0deg);
