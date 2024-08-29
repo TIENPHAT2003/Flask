@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, request, url_for, redirect
 from flask_wtf import FlaskForm
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, send
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
@@ -40,8 +40,11 @@ def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         decoded_payload = msg.payload.decode()
         value = sensor.get_mpb10_value(decoded_payload)
-        print("value:", value)
-        socketio.emit('mqtt_message', {'data': value})
+        data ={
+            "mpb10": "Gyro",
+            "value": value
+        }
+        socketio.emit('mqtt_message',  data)
 
     for topic in MQTT_TOPICS_SUBSCRIBE:
         client.subscribe(topic)
@@ -49,7 +52,7 @@ def subscribe(client: mqtt_client):
     
 def run_mqtt():
     client = connect_mqtt()
-    client.loop_forever()
+    client.loop_start()
     subscribe(client)
 
 @app.route("/")
@@ -94,3 +97,19 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template('500.html'), 500
+
+@socketio.on('connect')
+def handle_connect():
+    client_ip = request.remote_addr
+    print(f'Client connected with IP: {client_ip}')
+@socketio.on('message')
+def handle_message(msg):
+    print('Message: ' + msg)
+    send(msg, broadcast=True)
+    
+@socketio.on('custom_event')
+def handle_custom_event(data):
+    emit('custom_response', data, broadcast=True)
+    print(f'Received data: {data}')
+        
+    
