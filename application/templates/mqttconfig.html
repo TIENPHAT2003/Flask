@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+
+  <h1>Connection</h1>
+  <br />
+  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <form method="POST">
+      {{ configForm.hidden_tag() }}
+
+      {{ configForm.broker.label(class='form-label') }}
+      {{ configForm.broker(class='form-control') }}
+
+      {{ configForm.port.label(class='form-label') }}
+      {{ configForm.port(class='form-control') }}
+
+      {{ configForm.usr.label(class='form-label') }}
+      {{ configForm.usr(class='form-control') }}
+
+      {{ configForm.pwd.label(class='form-label') }}
+      {{ configForm.pwd(class='form-control') }}
+      <br />
+      {{ configForm.submit(class='btn btn-primary') }}
+    </form>
+  </div>
+  <br />
+
+  <h1>Sensor List:</h1>
+  <br />
+  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <form method="POST">
+      {{ deviceForm.hidden_tag() }}
+
+      {{ deviceForm.topic.label(class='form-label') }}
+      {{ deviceForm.topic(class='form-control') }}
+
+      {{ deviceForm.sensor.label(class='form-label') }}
+      {{ deviceForm.sensor(class='form-control') }}
+
+      {{ deviceForm.type.label(class='form-label') }}
+      {{ deviceForm.type(class='form-control') }}
+
+      <br />
+      {{ deviceForm.submit(class='btn btn-primary') }}
+    </form>
+  </div>
+  <br />
+
+  <table class="table table-striped">
+    <tr>
+      <td>ID</td>
+      <td>Topic</td>
+      <td>Sensor</td>
+      <td>Type</td>
+    </tr>
+    {% for dev_conf in dev_conf %}
+      <tr>
+        <td>{{ dev_conf.id }}</td>
+        <td>{{ dev_conf.topic }}</td>
+        <td>{{ dev_conf.sensor }}</td>
+        <td>{{ dev_conf.type }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <br />
+  <CENTER>
+    <img src="{{ url_for('static', filename='images/cat.png') }}" />
+  </CENTER>
+{% endblock %}

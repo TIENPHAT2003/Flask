@@ -1,13 +1,16 @@
 import json
 import math
 import struct
-import numpy as np
+
 class SICK_SENSOR:
-    def get_byte_to_int_value(self, arr, zero_pos, scale, length):
+    def get_byte_to_int_value(arr, zero_pos, scale, length):
         measurement_value = 0
+        
         for i in range(length):
-            measurement_value |= (arr[i] << (8 * (length - i - 1)))
-        relative_data = measurement_value * (10 ** scale)
+            measurement_value |= (arr[i] << (8 * (length - i - 1)) & 0xFFFFFFFF)
+        if measurement_value >= 2**31:
+            measurement_value -= 2**32
+        relative_data = measurement_value * pow(10, scale)
         absolute_data = relative_data + zero_pos
         return absolute_data
     
@@ -30,7 +33,7 @@ class SICK_SENSOR:
         doc = json.loads(json_string)
         for i in range(6):
             data_arr[i] = doc["iolink"]["value"][i]
-        re_arr[0] = self.get_byte_to_int_value(data_arr, 130, -6, 6)
+        re_arr[0] = self.get_byte_to_int_value(data_arr, 130, -6, 4)
         re_arr[1] = self.check_bit(data_arr[5], 0)
         re_arr[2] = self.check_bit(data_arr[5], 1)
         return re_arr
